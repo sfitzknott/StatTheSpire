@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Resources, links etc..md",
+            "file": "misc. notes - data.md",
             "mode": "source",
             "source": false
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Resources, links etc..md",
+            "file": "misc. notes - data.md",
             "mode": "preview",
             "source": false
           }
@@ -91,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources, links etc..md",
+                "file": "misc. notes - data.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources, links etc..md",
+                "file": "misc. notes - data.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources, links etc..md"
+                "file": "misc. notes - data.md"
               }
             }
           }
@@ -144,7 +144,7 @@
   },
   "active": "df9db70de38ca1c1",
   "lastOpenFiles": [
-    "Initial dump.md",
-    "Resources, links etc..md"
+    "Resources, links etc..md",
+    "Initial dump.md"
   ]
 }
