@@ -161,5 +161,13 @@ cython_debug/
 
 #ignore run files
 runs/
-
 .vscode/
+personal\ notes.md
+package-lock.json
+node_modules
+/public/build/
+rollup.config.js
+.DS_Store
+tsconfig.json
+src/frontend/README.md
+StatTheSpire/.obsidian/workspace
