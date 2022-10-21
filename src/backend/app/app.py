@@ -7,8 +7,11 @@ import pymongo
 from pymongo import MongoClient, InsertOne
 from bson import json_util
 from collections.abc import Collection, Mapping
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 client = pymongo.MongoClient('127.0.0.1:27017')
 db = client.statTheSpire
@@ -20,8 +23,10 @@ characters = {'DEFECT' : db.defect,
 @app.route("/createdb")
 def createdb() -> str: 
     client = pymongo.MongoClient('127.0.0.1:27017')
+    client.drop_database('statTheSpire')
     db = client.statTheSpire
-    [populate_collection(v, k) for k,v in characters]
+    for k,v in characters.items():
+        populate_collection(v, k)
     client.close()
     return "creation succesful"
 
@@ -67,16 +72,18 @@ def ins():
 #by character
 
 @app.route("/runs", methods=['POST'])
+@cross_origin()
 def get_runs():
-    params = request.form.to_dict()
+    #params = request.form.to_dict()
+    params = request.get_json()
     print(params)
     params = apply_recursive(convert_if_numeric, params)
-    params = apply_recursive(convert_if_bool, params)
-    print(params)
+    #params = apply_recursive(convert_if_bool, params)
 
     result = []
     if 'character' in params:
         collection = characters[params.pop('character')]
+        print(params)
         result =  get_query(collection, params)
     else:
         for char in list(characters.values()):
@@ -103,7 +110,14 @@ def apply_recursive(func, obj):
         return func(obj)
 
 def convert_if_numeric(val):
-    return int(val) if val.isnumeric() else val
+    if isinstance(val, int) or isinstance(val, float):
+        return val
+    #attempting to catch floats, may have to revise
+    elif val.replace('.', '').isdigit():
+        return float(val)
+    elif val.isdigit():
+        return int(val)
+    return val
 
 def convert_if_bool(val):
     return True if val == "true" else False if val == "false" else val
